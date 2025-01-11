@@ -13,7 +13,7 @@ model.load_state_dict(torch.load("classifier.pth", weights_only=True))
 
 program_start_time = time.time()
 
-# 1. Φόρτωση MNIST Dataset
+# Φόρτωση MNIST Dataset
 train_dataset = datasets.MNIST(root='./data', train=True, download=True)
 test_dataset = datasets.MNIST(root='./data', train=False, download=True)
 
@@ -27,7 +27,7 @@ train_dataset_tensor = TensorDataset(train_dataset.data, train_dataset.targets)
 train_loader = DataLoader(train_dataset_tensor, batch_size=256, shuffle=True)
 
 
-# 2. Ορισμός Autoencoder
+# Ορισμός Autoencoder
 class Autoencoder(nn.Module):
     def __init__(self):
         super(Autoencoder, self).__init__()
@@ -116,10 +116,9 @@ for i in range(len(test_dataset.data)):
     else:
         correct_indices.append(i)
 
-# 6. Εμφάνιση Πρωτότυπων και Ανακατασκευασμένων Εικόνων από το Test Set
+# Εμφάνιση Πρωτότυπων και Ανακατασκευασμένων Εικόνων από το Test Set
 plt.figure(figsize=(15, 12))  # Αυξήστε το ύψος για 4 σειρές
 
-# Πρώτη επανάληψη Original-Reconstructed
 # Πρώτη γραμμή: Πρωτότυπες εικόνες
 for i in range(10):
     plt.subplot(4, 10, i + 1)  # 4 σειρές, 10 στήλες
@@ -132,7 +131,6 @@ for i in range(10):
     plt.imshow(test_reconstructed[correct_indices[i]].numpy().reshape(28, 28), cmap='gray')
     plt.axis('off')
 
-# Δεύτερη επανάληψη Original-Reconstructed
 # Τρίτη γραμμή: Πρωτότυπες εικόνες
 for i in range(10):
     plt.subplot(4, 10, i + 21)
