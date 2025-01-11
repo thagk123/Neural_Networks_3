@@ -9,7 +9,7 @@ model.load_state_dict(torch.load("classifier.pth", weights_only=True))
 
 program_start_time = time.time()
 
-# 1. Φόρτωση MNIST Dataset
+# Φόρτωση MNIST Dataset
 train_dataset = datasets.MNIST(root='./data', train=True, download=True)
 test_dataset = datasets.MNIST(root='./data', train=False, download=True)
 
@@ -24,7 +24,7 @@ pca = PCA(n_components=n_components)
 x_train_pca = pca.fit_transform(train_dataset.data.numpy())
 x_test_pca = pca.transform(test_dataset.data.numpy())
 
-# Ανακατασκευή των δεδομένων
+# Ανακατασκευή των εικόνων
 train_reconstructed = torch.tensor(pca.inverse_transform(x_train_pca)).float()
 test_reconstructed = torch.tensor(pca.inverse_transform(x_test_pca)).float()
 
@@ -42,10 +42,10 @@ for i in range(len(test_dataset.data)):
     else:
         correct_indices.append(i)
 
-# 6. Εμφάνιση Πρωτότυπων και Ανακατασκευασμένων Εικόνων από το Test Set
+# Εμφάνιση Πρωτότυπων και Ανακατασκευασμένων Εικόνων από το Test Set
 plt.figure(figsize=(15, 12))  # Αυξήστε το ύψος για 4 σειρές
 
-# Πρώτη επανάληψη Original-Reconstructed
+
 # Πρώτη γραμμή: Πρωτότυπες εικόνες
 for i in range(10):
     plt.subplot(4, 10, i + 1)  # 4 σειρές, 10 στήλες
@@ -58,7 +58,7 @@ for i in range(10):
     plt.imshow(test_reconstructed[correct_indices[i]].numpy().reshape(28, 28), cmap='gray')
     plt.axis('off')
 
-# Δεύτερη επανάληψη Original-Reconstructed
+
 # Τρίτη γραμμή: Πρωτότυπες εικόνες
 for i in range(10):
     plt.subplot(4, 10, i + 21)
