@@ -12,7 +12,7 @@ model.load_state_dict(torch.load("classifier.pth", weights_only=True))
 
 program_start_time = time.time()
 
-# 1. Φόρτωση MNIST Dataset
+# Φόρτωση MNIST Dataset
 train_dataset = datasets.MNIST(root='./data', train=True, download=True)
 test_dataset = datasets.MNIST(root='./data', train=False, download=True)
 
@@ -21,7 +21,7 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 train_dataset.data = torch.tensor(scaler.fit_transform(train_dataset.data.view(-1, 28*28))).float()
 test_dataset.data = torch.tensor(scaler.transform(test_dataset.data.view(-1, 28*28))).float()
 
-# Δημιουργία δεδομένων εκπαίδευσης και ελέγχου
+# Δημιουργία δεδομένων εκπαίδευσης και ελέγχου για επόμενο ψηφίο
 next_digit_train_data = []
 next_digit_train_targets = []
 
@@ -64,7 +64,7 @@ next_digit_test_targets = torch.tensor(next_digit_test_targets)
 train_dataset_tensor = TensorDataset(train_dataset.data, train_dataset.targets, next_digit_train_data, next_digit_train_targets)
 train_loader = DataLoader(train_dataset_tensor, batch_size=256, shuffle=True)
 
-# 2. Ορισμός Autoencoder
+# Ορισμός Autoencoder
 class Next_Digit_Autoencoder(nn.Module):
     def __init__(self):
         super(Next_Digit_Autoencoder, self).__init__()
@@ -151,10 +151,10 @@ for i in range(len(next_digit_test_data)):
     else:
         correct_indices.append(i)
 
-# 6. Εμφάνιση Πρωτότυπων και Ανακατασκευασμένων Εικόνων από το Test Set
+# Εμφάνιση Πρωτότυπων και Ανακατασκευασμένων Εικόνων από το Test Set
 plt.figure(figsize=(15, 12))  # Αυξήστε το ύψος για 4 σειρές
 
-# Πρώτη επανάληψη Original-Reconstructed
+
 # Πρώτη γραμμή: Πρωτότυπες εικόνες
 for i in range(10):
     plt.subplot(4, 10, i + 1)  # 4 σειρές, 10 στήλες
@@ -167,7 +167,7 @@ for i in range(10):
     plt.imshow(test_reconstructed[correct_indices[i]].numpy().reshape(28, 28), cmap='gray')
     plt.axis('off')
 
-# Δεύτερη επανάληψη Original-Reconstructed
+
 # Τρίτη γραμμή: Πρωτότυπες εικόνες
 for i in range(10):
     plt.subplot(4, 10, i + 21)
