@@ -23,7 +23,7 @@ class Classifier(nn.Module):
 
 model = Classifier()
 
-# 5. Συνάρτηση Αξιολόγησης με Accuracy και Confusion Matrix
+# Συνάρτηση Αξιολόγησης με Accuracy και Confusion Matrix
 def evaluate_accuracy(model, data, targets, set_name, py_name):
     model.eval()
     with torch.no_grad():
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     train_end = time.time() - train_start
     print(f"Χρόνος εκπαίδευσης: {train_end/60:.2f} λεπτά")
 
-    # Στο Classifier.py, μετά την εκπαίδευση:
+    # Αποθήκευση Εκπαιδευμένου Μοντέλου:
     torch.save(model.state_dict(), "classifier.pth")
 
     # Αξιολόγηση για Training και Test Set
