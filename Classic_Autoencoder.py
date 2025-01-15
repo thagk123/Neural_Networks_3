@@ -65,7 +65,7 @@ for epoch in range(epochs):
         # Forward Pass
         reconstructed = model_auto(images)
 
-        # Loss Calculation
+        # Υπολογισμός Loss
         loss = criterion(reconstructed, images)
 
         # Backward Pass
