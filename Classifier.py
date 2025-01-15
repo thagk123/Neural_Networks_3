@@ -42,7 +42,7 @@ def evaluate_accuracy(model, data, targets, set_name, py_name):
 if __name__ == "__main__":
     program_start_time = time.time()
 
-    # 1. Φόρτωση MNIST Dataset
+    # Φόρτωση MNIST Dataset
     train_dataset = datasets.MNIST(root='./data', train=True, download=True)
     test_dataset = datasets.MNIST(root='./data', train=False, download=True)
 
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     train_dataset.data = torch.tensor(scaler.fit_transform(train_dataset.data.view(-1, 28 * 28))).float()
     test_dataset.data = torch.tensor(scaler.transform(test_dataset.data.view(-1, 28 * 28))).float()
 
-    # Δημιουργία DataLoaders
+    # Δημιουργία DataLoader
     train_dataset_tensor = TensorDataset(train_dataset.data, train_dataset.targets)
     train_loader = DataLoader(train_dataset_tensor, batch_size=256, shuffle=True)
 
