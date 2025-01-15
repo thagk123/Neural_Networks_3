@@ -22,7 +22,7 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 train_dataset.data = torch.tensor(scaler.fit_transform(train_dataset.data.view(-1, 28*28))).float()
 test_dataset.data = torch.tensor(scaler.transform(test_dataset.data.view(-1, 28*28))).float()
 
-# Δημιουργία DataLoaders
+# Δημιουργία DataLoader
 train_dataset_tensor = TensorDataset(train_dataset.data, train_dataset.targets)
 train_loader = DataLoader(train_dataset_tensor, batch_size=256, shuffle=True)
 
