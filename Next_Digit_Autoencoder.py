@@ -60,7 +60,7 @@ next_digit_train_targets = torch.tensor(next_digit_train_targets)
 next_digit_test_data = torch.cat(next_digit_test_data).view(-1, 784)
 next_digit_test_targets = torch.tensor(next_digit_test_targets)
 
-# Δημιουργία DataLoaders
+# Δημιουργία DataLoader
 train_dataset_tensor = TensorDataset(train_dataset.data, train_dataset.targets, next_digit_train_data, next_digit_train_targets)
 train_loader = DataLoader(train_dataset_tensor, batch_size=256, shuffle=True)
 
